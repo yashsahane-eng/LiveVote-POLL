@@ -4,10 +4,9 @@ import { io } from "socket.io-client";
 const SocketContext = createContext(null);
 
 export const SocketProvider = ({ children }) => {
-  
   const socket = useMemo(() => {
-    return io("http://localhost:5000", {
-      transports: ["websocket"],
+    return io(import.meta.env.VITE_API_URL, {
+      transports: ["websocket"]
     });
   }, []);
 
