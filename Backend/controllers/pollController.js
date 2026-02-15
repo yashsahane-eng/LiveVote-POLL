@@ -60,8 +60,9 @@ exports.votePoll = async (req, res) => {
     }
 
     if (poll.voters.includes(voterId)) {
-      return res.status(400).json({ message: "You already voted" });
-    }
+  console.log("Duplicate vote attempt:", voterId);
+  // optional: keep log but don't block
+}
 
     if (
       optionIndex === undefined ||
