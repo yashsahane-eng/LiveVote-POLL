@@ -27,7 +27,7 @@ const PollView = () => {
 
     fetchPoll();
 
-    // fairness layer (localStorage)
+    // fairness 
     const votedPolls = JSON.parse(localStorage.getItem("voted_polls") || "[]");
     if (votedPolls.includes(pollId)) {
       setHasVoted(true);

@@ -4,7 +4,7 @@ import { io } from "socket.io-client";
 const SocketContext = createContext(null);
 
 export const SocketProvider = ({ children }) => {
-  // create socket ONLY ONCE
+  
   const socket = useMemo(() => {
     return io("http://localhost:5000", {
       transports: ["websocket"],

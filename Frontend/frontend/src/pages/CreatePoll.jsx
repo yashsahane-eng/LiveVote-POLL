@@ -8,7 +8,7 @@ const CreatePoll = () => {
   const [options, setOptions] = useState(["", ""]);
   const [loading, setLoading] = useState(false);
 
-  // 🔥 NEW STATE → for share link
+  //  NEW STATE → for share link
   const [createdPollId, setCreatedPollId] = useState(null);
 
   const handleAddOption = () => {
@@ -40,7 +40,7 @@ const CreatePoll = () => {
 
       const id = response.data.pollId;
 
-      // ✅ instead of redirect — show share link UI
+    
       if (id) {
         setCreatedPollId(id);
       }
@@ -69,7 +69,7 @@ const CreatePoll = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Question Input */}
+          {/*  Input */}
           <div>
             <label className="block text-sm font-semibold text-slate-500 mb-2 uppercase tracking-wider">
               Your Question
@@ -149,7 +149,7 @@ const CreatePoll = () => {
           </div>
         </form>
 
-        {/* 🔥 SHARE LINK SECTION */}
+        {/*  Live link*/}
         {createdPollId && (
           <motion.div
             initial={{ opacity: 0 }}
