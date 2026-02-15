@@ -3,7 +3,9 @@ import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { useSocket } from "../context/SocketContext";
-import { Share2, CheckCircle2, Trophy } from "lucide-react";
+import { Trophy } from "lucide-react";
+
+const API = import.meta.env.VITE_API_URL;
 
 const PollView = () => {
   const { pollId } = useParams();
@@ -16,9 +18,7 @@ const PollView = () => {
   useEffect(() => {
     const fetchPoll = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:5000/polls/${pollId}`
-        );
+        const res = await axios.get(`${API}/polls/${pollId}`);
         setPoll(res.data);
       } catch {
         console.error("Poll not found");
@@ -27,13 +27,13 @@ const PollView = () => {
 
     fetchPoll();
 
-    // fairness 
+    // fairness
     const votedPolls = JSON.parse(localStorage.getItem("voted_polls") || "[]");
     if (votedPolls.includes(pollId)) {
       setHasVoted(true);
     }
 
-    // join socket room
+    // socket join
     socket.emit("joinPoll", pollId);
 
     socket.on("pollUpdated", (updatedPoll) => {
@@ -51,10 +51,9 @@ const PollView = () => {
     if (hasVoted) return;
 
     try {
-      const res = await axios.post(
-        `http://localhost:5000/polls/${pollId}/vote`,
-        { optionIndex }
-      );
+      const res = await axios.post(`${API}/polls/${pollId}/vote`, {
+        optionIndex,
+      });
 
       setPoll(res.data);
       setHasVoted(true);
@@ -63,6 +62,7 @@ const PollView = () => {
       const votedPolls = JSON.parse(
         localStorage.getItem("voted_polls") || "[]"
       );
+
       localStorage.setItem(
         "voted_polls",
         JSON.stringify([...votedPolls, pollId])
@@ -101,7 +101,10 @@ const PollView = () => {
                 {option.text}
               </button>
             ) : (
-              <div key={index} className="relative w-full h-12 bg-slate-50 rounded-xl overflow-hidden">
+              <div
+                key={index}
+                className="relative w-full h-12 bg-slate-50 rounded-xl overflow-hidden"
+              >
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${percentage}%` }}
