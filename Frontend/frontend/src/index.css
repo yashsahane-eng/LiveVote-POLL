@@ -1,1 +1,80 @@
 @import "tailwindcss";
+
+@theme {
+  --color-primary: #A3FF12;
+  --color-background-start: #0B0F14;
+  --color-background-end: #0F172A;
+  --color-surface: rgba(15, 23, 42, 0.6);
+}
+
+body {
+  background: #0B0F14; /* Fallback */
+  background: linear-gradient(to bottom right, #0B0F14, #0F172A);
+  color: #E5E7EB;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(17, 24, 39, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.terminal-input {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #E5E7EB;
+  transition: all 0.3s ease;
+}
+
+.terminal-input:focus {
+  border-color: #A3FF12;
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 15px rgba(163, 255, 18, 0.15);
+  outline: none;
+}
+
+.glow-button {
+  background: #A3FF12;
+  color: #0B0F14;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glow-button:hover:not(:disabled) {
+  box-shadow: 0 0 25px rgba(163, 255, 18, 0.5);
+  transform: translateY(-2px);
+  background: #B4FF33;
+}
+
+.glow-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.glow-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.glow-text {
+  text-shadow: 0 0 30px rgba(163, 255, 18, 0.3);
+}
+
+/* Hide scrollbar for cleaner look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0F14;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}

@@ -4,7 +4,7 @@ const { createPoll, getPoll , votePoll } = require("../controllers/pollControlle
 
 router.post("/", createPoll);
 
-// 👇 NEW ROUTE
+
 router.get("/:id", getPoll);
 router.post("/:id/vote", votePoll);
 
