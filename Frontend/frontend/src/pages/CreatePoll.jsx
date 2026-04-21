@@ -93,7 +93,7 @@ const CreatePoll = () => {
             <h1 className="text-5xl lg:text-7xl font-bold tracking-tight text-white leading-[1.1]">
               It’s time to make <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#A3FF12] to-[#34d399] glow-text">
-                your software.
+                your Polls.
               </span>
             </h1>
             
